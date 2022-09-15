@@ -183,12 +183,13 @@ button {
   top: 0;
 }
 
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 768px) {
   .box-container {
     padding: 0 20px;
-    width: 100%;
+    width: auto;
   }
   .card {
+    grid-template-columns: auto;
     flex-direction: column;
   }
 }
