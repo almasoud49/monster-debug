@@ -7,9 +7,10 @@ const modalBackground = document.getElementById("modal-background");
 
 // variables
 let userText = "";
-let errorCount = 0;
+let errorCount = 0 ;
 let startTime;
 let questionText = "";
+
 
 // Load and display question
 fetch("./texts.json")
@@ -28,7 +29,8 @@ const typeController = (e) => {
     userText = userText.slice(0, userText.length - 1);
     return display.removeChild(display.lastChild);
   }
-
+  
+  
   // these are the valid character we are allowing to type
   const validLetters =
     "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ 1234567890!@#$%^&*()_+-={}[]'\".,?";
@@ -44,15 +46,14 @@ const typeController = (e) => {
 
   if (newLetterCorrect) {
     display.innerHTML += `<span class="green">${newLetter === " " ? "▪" : newLetter}</span>`;
-  } else {
-    display.innerHTML += `<span class="red">${newLetter === " " ? "▪" : newLetter}</span>`;
-
-    
-  }
-
+  } 
   
-
-  // check if given question text is equal to user typed text
+  else {
+    display.innerHTML += `<span class="red">${errorCount === " " ? "▪" : errorCount++}</span>`;
+  
+  }
+    
+    // check if given question text is equal to user typed text
   if (questionText === userText) {
     gameOver();
   }
@@ -90,6 +91,7 @@ const gameOver = () => {
   `;
 
   addHistory(questionText, timeTaken, errorCount);
+
 
   // restart everything
   startTime = null;
@@ -136,7 +138,7 @@ displayHistory();
 // Show typing time spent
 setInterval(() => {
   const currentTime = new Date().getTime();
-  const timeSpent = (currentTime - startTime) / 1000;
+  const timeSpent =(currentTime - startTime) / 1000;
 
 
   document.getElementById("show-time").innerHTML = `${startTime ? timeSpent : 0} seconds`;
